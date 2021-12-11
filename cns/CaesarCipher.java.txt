@@ -1,5 +1,5 @@
 import java.util.*;
-public class Main
+public class CaesarCipher
 {
     public static String encode(String enc,int offset)
     {
