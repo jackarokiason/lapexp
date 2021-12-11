@@ -1,0 +1,44 @@
+import java.util.*;
+public class Main
+{
+    public static String encode(String enc,int offset)
+    {
+        StringBuilder encoded=new StringBuilder();
+        for(char i:enc.toCharArray())
+        {
+            if(Character.isLetter(i))
+            {
+                if(Character.isUpperCase(i))
+                {
+                    encoded.append((char)('A'+(i-'A'+offset)%26));
+                }
+                else{
+                    encoded.append((char)('a'+(i-'a'+offset)%26));
+                }
+            }
+            else{
+                encoded.append(i);
+            }
+        }
+        return encoded.toString();
+    }
+    public static String decode(String encr,int offset)
+    {
+
+        return encode(encr,26-offset); 
+    }
+    
+	public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String text=sc.nextLine();
+        int key=sc.nextInt();
+        String cipher=encode(text,key);
+        System.out.printf("encrypted text: ");
+        System.out.println(cipher);
+        System.out.printf("decrypted text: ");
+        System.out.println(decode(cipher,key));
+        
+	
+}
+
+}
