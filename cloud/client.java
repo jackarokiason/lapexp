@@ -1,0 +1,32 @@
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+public class client{
+	public static void main(String[] args) throws IOException{
+		try{
+		Scanner sc=new Scanner(System.in);
+		Socket s= new Socket("127.0.0.1",10087);
+		System.out.println("Enter the file name:");
+		String fn=sc.next();
+		DataOutputStream dos=new DataOutputStream(s.getOutputStream());
+		dos.writeUTF(fn);
+		DataInputStream dis= new DataInputStream(s.getInputStream());
+		String input=(String)dis.readUTF();
+		FileInputStream fis=new FileInputStream(input);
+		System.out.println("Even numbers in the"+fn+"are");
+		int i=0;
+		while((i=fis.read())!=-1)
+			{
+					System.out.println((char)i);
+			}
+		s.close();
+		}	
+		catch(Exception e){
+		
+		System.out.println("port not available"+e);
+		}
+
+	}
+
+}
